@@ -1,12 +1,15 @@
 'use strict'
+require("dotenv").config()
+
 
 // creating a base name for the mongodb
 // REPLACE THE STRING WITH YOUR OWN DATABASE NAME
-const mongooseBaseName = 'express-auth-template'
+const mongooseBaseName = 'redbull-backend-api'
 
 // create the mongodb uri for development and test
 const database = {
-	development: `mongodb://localhost/${mongooseBaseName}-development`,
+	// MONGO_DEV_URI: `mongodb://localhost/${mongooseBaseName}-development`,
+	development: `mongodb+srv://sandwich:sandwich@cluster0.4tmzof4.mongodb.net/${mongooseBaseName}?retryWrites=true&w=majority`,
 	test: `mongodb://localhost/${mongooseBaseName}-test`,
 }
 
