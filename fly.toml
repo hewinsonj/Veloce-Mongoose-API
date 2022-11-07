@@ -10,7 +10,8 @@ processes = []
 
 [env]
   PORT = "8080"
-  MOGODB_URI = `mongodb+srv://sandwich:sandwich@cluster0.4tmzof4.mongodb.net/redbull-backend-api?retryWrites=true&w=majority`
+  MOGODB_URI = "mongodb+srv://sandwich:sandwich@cluster0.4tmzof4.mongodb.net/redbull-backend-api?retryWrites=true&w=majority"
+  CLIENT_ORIGIN="https://euphonious-yeot-7b70c6.netlify.app"
 
 [experimental]
   allowed_public_ports = []
