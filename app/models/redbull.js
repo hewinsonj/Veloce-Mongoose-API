@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const snackSchema = require('./snack')
+
 const redbullSchema = new mongoose.Schema(
 	{
 		flavor: {
@@ -13,8 +15,8 @@ const redbullSchema = new mongoose.Schema(
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
-			required: true,
 		},
+		snacks: [snackSchema],
 	},
 	{
 		timestamps: true,

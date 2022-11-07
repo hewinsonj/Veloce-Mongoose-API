@@ -27,8 +27,35 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
+// Index
+// /redbulls
+router.get('/redbulls', (req, res, next) => {
+    Redbull.find()
+        .populate('owner')
+        .then(redbulls => {
+            return redbulls.map(redbull => redbull)
+        })
+        .then(redbulls =>  {
+            res.status(200).json({ redbulls: redbulls })
+        })
+        .catch(next)
+})
+
+//Show
+// /redbulls/:id
+router.get('/redbulls/:id', (req, res, next) => {
+    Redbull.findById(req.params.id)
+    .populate('owner')
+    .then(handle404)
+    .then(redbull => {
+        res.status(200).json({ redbull: redbull })
+    })
+    .catch(next)
+
+})
+
 // Create
-// /pet
+// /redbull
 router.post('/redbulls', requireToken, (req, res, next) => {
     req.body.redbull.owner = req.user.id
 
@@ -43,5 +70,38 @@ router.post('/redbulls', requireToken, (req, res, next) => {
 
 })
 
+// Update
+// /redbulls/:id
+router.patch('/redbulls/:id', requireToken, removeBlanks, (req, res, next) => {
+    delete req.body.redbull.owner
+
+    Redbull.findById(req.params.id)
+    .then(handle404)
+    .then(redbull => {
+        requireOwnership(req, redbull)
+
+        return redbull.updateOne(req.body.redbull)
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+
+})
+
+// Delete
+// /redbulls/:id
+router.delete('/redbulls/:id', requireToken, removeBlanks, (req, res, next) => {
+    delete req.body.redbull
+
+    Redbull.findById(req.params.id)
+    .then(handle404)
+    .then(redbull => {
+        requireOwnership(req, redbull)
+
+        return redbull.deleteOne(req.body.redbull)
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+
+})
 
 module.exports = router
