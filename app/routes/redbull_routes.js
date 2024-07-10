@@ -61,6 +61,36 @@ router.post('/redbulls', requireToken, (req, res, next) => {
 
     // one the front end I HAVE TO SEND a pet as the top level key
     // pet: {name: '', type: ''}
+
+    // ----------------------------------------------------------------
+    // // this is a workaround to split the ingredients into an array
+    // // this is not ideal, but it's the only way to get this to work with the front end
+    // // because the front end sends the ingredients as a comma-separated string
+    // // so I have to split them into an array here
+    // // in a real application, you would want to handle this on the front end
+    // // and pass the ingredients as an array to the back end
+    // // but for this example, I'm doing it here
+    // const updatedRedBull = req.body.redbull.map((drink) => {
+
+    //     const ingredients = drink.ingredients.split(',')
+    //     drink.ingredients = ingredients
+
+    //     return drink
+    //   })
+
+
+    Redbull.create(req.body.redbull)
+    .then(redbull => {
+        res.status(201).json({ redbull: redbull
+    // const updatedRedBull = req.body.redbull.map((drink) => {
+
+    //     const ingredients = drink.ingredients.split(',')
+    //     drink.ingredients = ingredients
+
+    //     return drink
+    //   })
+
+
     Redbull.create(req.body.redbull)
     .then(redbull => {
         res.status(201).json({ redbull: redbull })
