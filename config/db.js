@@ -8,8 +8,8 @@ const mongooseBaseName = 'redbull-backend-api'
 
 // create the mongodb uri for development and test
 const database = {
-	// MONGO_DEV_URI: `mongodb://localhost/${mongooseBaseName}-development`,
-	development: `mongodb+srv://sandwich:sandwich@cluster0.4tmzof4.mongodb.net/${mongooseBaseName}?retryWrites=true&w=majority`,
+	MONGO_DEV_URI: `mongodb://localhost/${mongooseBaseName}-development`,
+	// development: `mongodb+srv://sandwich:sandwich@cluster0.4tmzof4.mongodb.net/${mongooseBaseName}?retryWrites=true&w=majority`,
 	test: `mongodb+srv://sandwich:sandwich@cluster0.4tmzof4.mongodb.net/${mongooseBaseName}?retryWrites=true&w=majority`,
 }
 
