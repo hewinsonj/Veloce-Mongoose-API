@@ -79,9 +79,9 @@ router.post('/redbulls', requireToken, (req, res, next) => {
     //   })
 
 
-    Redbull.create(req.body.redbull)
-    .then(redbull => {
-        res.status(201).json({ redbull: redbull
+    // Redbull.create(req.body.redbull)
+    // .then(redbull => {
+    //     res.status(201).json({ redbull: redbull
     // const updatedRedBull = req.body.redbull.map((drink) => {
 
     //     const ingredients = drink.ingredients.split(',')
